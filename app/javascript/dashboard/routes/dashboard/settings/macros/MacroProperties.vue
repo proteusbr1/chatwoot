@@ -119,7 +119,7 @@ export default {
   @apply mb-0;
 }
 
-::v-deep .error {
+:deep(.error) {
   .message {
     @apply mb-0;
   }

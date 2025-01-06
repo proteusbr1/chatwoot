@@ -1,4 +1,7 @@
-version: '3'
+# docker-compose --verbose build base
+# docker-compose build
+# docker compose run --rm rails bundle exec rails db:chatwoot_prepare
+# docker compose up -d
 
 services:
   base: &base
@@ -41,7 +44,7 @@ services:
       - NODE_ENV=development
       - RAILS_ENV=development
     entrypoint: docker/entrypoints/rails.sh
-    command: ["bundle", "exec", "rails", "s", "-p", "3000", "-b", "0.0.0.0"]
+    command: [ "bundle", "exec", "rails", "s", "-p", "3000", "-b", "0.0.0.0" ]
 
   sidekiq:
     <<: *base
@@ -59,7 +62,7 @@ services:
     environment:
       - NODE_ENV=development
       - RAILS_ENV=development
-    command: ["bundle", "exec", "sidekiq", "-C", "config/sidekiq.yml"]
+    command: [ "bundle", "exec", "sidekiq", "-C", "config/sidekiq.yml" ]
 
   vite:
     <<: *base
@@ -92,12 +95,12 @@ services:
     environment:
       - POSTGRES_DB=chatwoot
       - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
 
   redis:
     image: redis:alpine
     restart: always
-    command: ["sh", "-c", "redis-server --requirepass \"$REDIS_PASSWORD\""]
+    command: [ "sh", "-c", "redis-server --requirepass \"$REDIS_PASSWORD\"" ]
     env_file: .env
     volumes:
       - redis:/data/redis

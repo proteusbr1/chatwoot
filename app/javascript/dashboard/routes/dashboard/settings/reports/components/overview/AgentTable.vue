@@ -176,11 +176,11 @@ const table = useVueTable({
     }
   }
 
-  &::v-deep .ve-pagination {
+  &:deep(.ve-pagination) {
     @apply bg-transparent dark:bg-transparent;
   }
 
-  &::v-deep .ve-pagination-select {
+  &:deep(.ve-pagination-select) {
     @apply hidden;
   }
 

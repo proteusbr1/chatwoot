@@ -104,7 +104,7 @@ export default {
   @apply break-words text-slate-600 dark:text-slate-200;
 }
 
-.message-content::v-deep .searchkey--highlight {
+.message-content:deep(.searchkey--highlight) {
   @apply text-woot-600 dark:text-woot-500 text-sm font-semibold;
 }
 </style>
